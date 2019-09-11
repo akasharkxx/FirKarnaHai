@@ -10,7 +10,7 @@ namespace FirKarnaHai
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new NavigationPage(new TodoListView());
         }
 
         protected override void OnStart()
