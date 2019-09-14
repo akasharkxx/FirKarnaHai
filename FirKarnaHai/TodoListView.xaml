@@ -3,16 +3,32 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:FirKarnaHai"
              mc:Ignorable="d"
+             Visual="Material"
              x:Class="FirKarnaHai.TodoListView"
              Title="{Binding Title}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:ChangeCompleteActionTextConverter x:Key="ChangeCompletedActionTextConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <ListView ItemsSource="{Binding GroupedTodoList}"
                         IsGroupingEnabled="True"
-                        GroupDisplayBinding="{Binding Key}">
+                        GroupDisplayBinding="{Binding Key}"
+                        x:Name="TodoDisplayList">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextCell Text="{Binding Title}"/>
+                  <TextCell Text="{Binding Title}">
+                      <TextCell.ContextActions>
+                        <MenuItem Command ="{Binding Source={x:Reference TodoDisplayList}, Path=BindingContext.ChangeIsCompleted }"
+                                    CommandParameter="{Binding .}"
+                                    Text="{Binding IsCompleted, Converter={StaticResource ChangeCompletedActionTextConverter}}" />
+                        <MenuItem Command ="{Binding Source={x:Reference TodoDisplayList}, Path=BindingContext.Delete }"
+                                    CommandParameter="{Binding .}" Text="Delete" IsDestructive ="True"/>
+                      </TextCell.ContextActions>
+                  </TextCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
