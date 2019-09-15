@@ -1,11 +1,11 @@
-﻿using System;
+﻿using FirKarnaHai.Persistence;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace FirKarnaHai
 {
     public partial class App : Application
     {
+        public static TodoRepository TodoRepository = new TodoRepository();
         public App()
         {
             InitializeComponent();

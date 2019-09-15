@@ -9,7 +9,14 @@ namespace FirKarnaHai
         public TodoListView()
         {
             InitializeComponent();
-            BindingContext = new TodoListViewModel();
+            BindingContext = new TodoListViewModel(Navigation);
+            //BindingContext = new AddTodoItemViewModel(Navigation);
         }
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+            await (BindingContext as TodoListViewModel).RefreshTaskList();
+        }
+
     }
 }

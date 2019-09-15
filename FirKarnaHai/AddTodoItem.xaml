@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="FirKarnaHai.AddTodoItem">
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical" VerticalOptions="Center">
+            <Entry Placeholder="Kya Karna Hai ? " Text="{Binding TodoTitle}" />
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                <Button Text="Cancel" Command="{Binding Cancel}"/>
+                <Button Text="Save" Command="{Binding Save}"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

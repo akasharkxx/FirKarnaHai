@@ -6,6 +6,8 @@
              xmlns:local="clr-namespace:FirKarnaHai"
              mc:Ignorable="d"
              Visual="Material"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="True"
              x:Class="FirKarnaHai.TodoListView"
              Title="{Binding Title}">
     <ContentPage.Resources>
@@ -14,23 +16,26 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
+        <StackLayout>
         <ListView ItemsSource="{Binding GroupedTodoList}"
                         IsGroupingEnabled="True"
                         GroupDisplayBinding="{Binding Key}"
                         x:Name="TodoDisplayList">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                  <TextCell Text="{Binding Title}">
-                      <TextCell.ContextActions>
-                        <MenuItem Command ="{Binding Source={x:Reference TodoDisplayList}, Path=BindingContext.ChangeIsCompleted }"
-                                    CommandParameter="{Binding .}"
-                                    Text="{Binding IsCompleted, Converter={StaticResource ChangeCompletedActionTextConverter}}" />
-                        <MenuItem Command ="{Binding Source={x:Reference TodoDisplayList}, Path=BindingContext.Delete }"
-                                    CommandParameter="{Binding .}" Text="Delete" IsDestructive ="True"/>
-                      </TextCell.ContextActions>
-                  </TextCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding Title}">
+                            <TextCell.ContextActions>
+                                <MenuItem Command ="{Binding Source={x:Reference TodoDisplayList}, Path=BindingContext.ChangeIsCompleted }"
+                                        CommandParameter="{Binding .}"
+                                        Text="{Binding IsCompleted, Converter={StaticResource ChangeCompletedActionTextConverter}}" />
+                                <MenuItem Command ="{Binding Source={x:Reference TodoDisplayList}, Path=BindingContext.Delete }"
+                                        CommandParameter="{Binding .}" Text="Delete" IsDestructive ="True"/>
+                            </TextCell.ContextActions>
+                        </TextCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Button Command="{Binding AddItem}" Text="Aur kaam Hai"/>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>
